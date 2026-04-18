@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -5,9 +8,6 @@
 # --- PolyForm Noncommercial License 1.0.0.            ---
 # --- step10_stats_and_pre_data_plotting.py            ---
 # --------------------------------------------------------
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import sys
 import os
@@ -297,7 +297,6 @@ def calculate_z_score_and_generate_quick_plot(input_output_folder):
         plot_z_scores(merged, timepoint, input_output_folder)
 
 
-
 def main():
     if len(sys.argv) != 2:
         print("Usage: step10_stats_and_pre_data_plotting.py <Asite_pausing_calculations_folder_name>")
@@ -319,7 +318,6 @@ def main():
 
     # Calling substep 10.5 to calculate z-score and to generate a quick plot
     calculate_z_score_and_generate_quick_plot(Asite_pausing_calculations_folder_name)
-
 
 
 if __name__ == "__main__":

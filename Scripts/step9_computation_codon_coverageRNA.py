@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -5,9 +8,6 @@
 # --- PolyForm Noncommercial License 1.0.0.            ---
 # --- step9_computation_codon_coverageRNA.py           ---
 # --------------------------------------------------------
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import sys
 import pyBigWig
@@ -268,7 +268,6 @@ def count_lines_in_txt_files(folder_path):
         with open(file_path, 'r') as f:
             line_count = sum(1 for _ in f)
         print(f"{file}: {line_count} lines")
-
 
 
 def main():

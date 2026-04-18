@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -6,8 +9,8 @@
 # --- tools.py                                         ---
 # --------------------------------------------------------
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# This file implements some common functionality between step 6 (on the RIBO side)
+# and step 8 (on the RNA side), to avoid duplication of code.
 
 import os
 import subprocess
@@ -39,7 +42,6 @@ def batch_convert_bigwig_to_wig(bigwig_files, output_directory):
         convert_bigwig_to_wig(bigwig_file, output_directory)
 
 
-# (Note: this function role was previously played by read_bigwig_list_from_csv())
 def discover_bigwig_files(bigwig_folder_name):
     """
     Discover all BigWig files in the given folder.
@@ -332,32 +334,22 @@ def find_overlaps(bedgraph_data):
     bedgraph_data.sort(key=lambda x: (x[0], x[1]))
     
     prev_entry = bedgraph_data[0]
-    # (fix?) curr_entry_already_overlapped = false
     for i in range(1, len(bedgraph_data)):
         curr_entry = bedgraph_data[i]
         
         # If the chromosome matches and there is an overlap in coordinates
-          # Franck note 2: I'm bothered by the situation of A overlap B (and B does not overlap anything else),
-          # where A and B will be put in the "overlapping" (which is correct), but B will also at the next iteration
-          # be put in the "non_verlapping" (which is incorrect, since it overlapped with A!)
-          # Said differently, the "overlapping" are correct, but the "non_overapping" might be incorrect.
         if (curr_entry[0] == prev_entry[0] and 
             curr_entry[1] < prev_entry[2]):  # Overlap condition
 
             overlapping_data.append(prev_entry)
             overlapping_data.append(curr_entry)
-            # (fix?) curr_entry_already_overlapped = true
         else:
-            # (fix?) if(not curr_entry_already_overlapped):
             non_overlapping_data.append(prev_entry)
-            # (fix?) else:
-            # (fix?) curr_entry_already_overlapped = false
         
         # The "current" becomes the "previous" in preparation for the next iteration
         prev_entry = curr_entry
     
     # Append the last entry
-    #(fix?) if (not curr_entry_already_overlapped): 
     non_overlapping_data.append(prev_entry)
     
     return non_overlapping_data, overlapping_data
@@ -475,4 +467,3 @@ def convert_all_bedgraphs_to_bigwigs(input_folder, chrom_sizes, output_folder, p
             print(f"  Converting {bedgraph_file} to {output_bw}...")
             # Call the conversion function
             bedgraph_to_bigwig(bedgraph_file, chrom_sizes, output_bw)
-

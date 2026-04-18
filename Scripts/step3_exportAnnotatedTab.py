@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -5,9 +8,6 @@
 # --- PolyForm Noncommercial License 1.0.0.            ---
 # --- step3_exportAnnotatedTab.py                      ---
 # --------------------------------------------------------
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import sys
 import pandas as pd

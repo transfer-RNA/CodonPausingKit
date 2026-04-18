@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -5,9 +8,6 @@
 # --- PolyForm Noncommercial License 1.0.0.            ---
 # --- step7_computation_codon_coverage.py              ---
 # --------------------------------------------------------
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import sys
 import pyBigWig
@@ -103,27 +103,6 @@ def get_coverage_per_codon_for_multiple_bigwigs_in_folder(input_folder, bed_file
         print(f"  Processing {bigwig_file}...")
         get_coverage_per_codon(bigwig_file, bed_file, output_file)
         print(f"  -> Finished processing {bigwig_file} (for coverage per codon), output saved to {output_file}")
-
-
-
-# %% FOR TESTING CALCULATE OCCURENCES NUMBER: SEEMS NOT USED
-# ----------------------------------------------------------
-
-# # Read the input file and calculate total occurrences
-# def calculate_total_occurrences(file_path):
-#     total_occurrences = 0
-#     with open(file_path, 'r') as file:
-#         next(file)  # Skip the header line
-#         for line in file:
-#             columns = line.strip().split('\t')  # Split by tab
-#             occurrences = int(columns[5])  # Column 6 contains occurrences
-#             total_occurrences += occurrences
-#     return total_occurrences
-
-# # Provide the path to your file here
-# file_path = '/Users/aude/Documents/Jade_lab/RIBOseq_TB-seq/TestGFF2table/TESToutput_codon_coverage.txt'
-# total_occurrences = calculate_total_occurrences(file_path)
-# print(f'Total Occurrences: {total_occurrences}')
 
 
 
@@ -239,12 +218,12 @@ def normalize_codon_coverage(input_file, output_folder):
     df = pd.read_csv(input_file, sep='\t')
 
     # Calculate the total coverage
-    total_coverage = df['Average_NormCoverage'].sum() # Bug fixed 2 (related): changed from Average_Coverage
+    total_coverage = df['Average_NormCoverage'].sum()
 
     # Create a new DataFrame with Codon_Seq and Coverage_Percentage
     df_normalized = pd.DataFrame({
         'Codon_Seq': df['Codon_Seq'],
-        'Coverage_Percentage': (df['Average_NormCoverage'] / total_coverage) * 100 # Bug fixed 2 (related): changed from Average_Coverage
+        'Coverage_Percentage': (df['Average_NormCoverage'] / total_coverage) * 100
     })
 
     # Generate output filename
@@ -265,7 +244,7 @@ def normalize_codon_coverage_for_multiple_files(input_folder, output_folder):
 
     # Iterate over all files ending with "_codon_coverage_with_normalization.txt" in the input folder
     for file in os.listdir(input_folder):
-        if file.endswith("_codon_coverage_with_normalization.txt"): # Bug fixed 1: Changed by Franck Monday 13th Apr 10.30am, from _codon_coverage.txt, since we're supposed to have them normalized at this point
+        if file.endswith("_codon_coverage_with_normalization.txt"):
             input_file = os.path.join(input_folder, file)
             print(f"  Normalizing codon coverage of: {input_file}")
             normalize_codon_coverage(input_file, output_folder)
@@ -273,7 +252,6 @@ def normalize_codon_coverage_for_multiple_files(input_folder, output_folder):
 
 
 # %% SANITY CHECK FILE LENGTH
-# Update April 2026: Now applied to the last step for Ribo too (was applied to one step earlier, probably because the last step just above had a bug (now fixed) that prevented it from finding any file since it was not looking for the right suffix)
 # ---------------------------
 
 # Definition of substep 7.5
@@ -288,10 +266,6 @@ def count_lines_in_txt_files(folder_path):
         with open(file_path, 'r') as f:
             line_count = sum(1 for _ in f)
         print(f"  {file}: {line_count} lines")
-
-
-
-
 
 
 def main():

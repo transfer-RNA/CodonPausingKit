@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -6,15 +9,12 @@
 # --- step8_getting_rna_coverage.py                    ---
 # --------------------------------------------------------
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import sys
 import os
 import subprocess
 import csv
 
-import tools
+import tools # Using some common functionality shared between RIBO and RNA sides
 
 
 # Note: this step 8 is the equivalent of step 6, but this time for RNA (instead of RIBO)
@@ -24,49 +24,49 @@ import tools
 # --------------------------------
 
     # For step 8.1:
-    # We just use the functions in tools.py that step6 also uses without duplicating them
+    # Using the common functionality provided in tools.py
 
 
 # %% GETTING ABSOLUTE COVERAGE IN THE RNA REVERSE FILES
 # -----------------------------------------------------
 
     # For step 8.2:
-    # We just use the functions in tools.py that step6 also uses without duplicating them
+    # Using the common functionality provided in tools.py
 
 
 # %% TRANSFORMING WIGGLE FILES TO BEDGRAPH (going from 1-based to 0-based coordinates)
 # -----------------------------------------------------
 
     # For step 8.3:
-    # We just use the functions in tools.py that step6 also uses without duplicating them
+    # Using the common functionality provided in tools.py
 
 
 # %% MERGING FORWARD AND REVERSE RNA BEDGRAPH FILES FOR EACH SAMPLE
 # -----------------------------------------------------------------
 
     # For step 8.4:
-    # We just use the functions in tools.py that step6 also uses without duplicating them
+    # Using the common functionality provided in tools.py
 
 
 # %% SORTING ALL CONCATENATED RNA BEDGRAPH FILES
 # ----------------------------------------------
 
     # For step 8.5:
-    # We just use the functions in tools.py that step6 also uses without duplicating them
+    # Using the common functionality provided in tools.py
 
 
 # %% REMOVE OVERLAPS IN SORTED RNA BEDGRAPHS
 # ------------------------------------------
 
     # For step 8.6:
-    # We just use the functions in tools.py that step6 also uses without duplicating them
+    # Using the common functionality provided in tools.py
 
 
 # %% TRANSFORMING SORTED/CLEANED RNA BEDGRAPH FILES IN BIGWIG
 # -----------------------------------------------------------
 
     # For step 8.7:
-    # We just use the functions in tools.py that step6 also uses without duplicating them
+    # Using the common functionality provided in tools.py
 
 
 def main():
@@ -105,10 +105,5 @@ def main():
     tools.convert_all_bedgraphs_to_bigwigs(RNAcleaned_bedgraphs_no_overlap_folder_name, chrom_sizes_txt_file, RNAbigwig_output_folder_name, ".sortedRNA_cleaned.bedgraph")
  
 
-
 if __name__ == "__main__":
     main()
-
-
-
-

@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -6,9 +9,6 @@
 # --- step6_bigwig_processing.py                       ---
 # --------------------------------------------------------
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import sys
 import os
 import subprocess
@@ -16,7 +16,7 @@ import csv
 import pyBigWig
 import glob
 
-import tools
+import tools # Using some common functionality shared between RIBO and RNA sides
 
 
 # %% LOOKING AT FIRST 3 LINES OF A GIVEN BIGWIG FILE
@@ -61,24 +61,25 @@ def print_header_and_first_3_lines(bigwig_file):
 # --------------------------------
 
     # For step 6.2:
-    # Now using tools
+    # Using the common functionality provided in tools.py
 
 
-# %% SHIFTING BIGWIG TO GET A,P,E site coordinates (easier to do the shifting than on bedgraph?)
+# %% SHIFTING BIGWIG TO GET A,P,E site coordinates (easier to do the shifting than on bedgraph)
 # -------------------------------------------------------------
+# Note that only this substep is implemented here, since it's the only one to happen only on the
+# RIBO side (and not on RNA side). Everything else (that is shared by both sides) was defined in tools.
 
 # Utility function for 6.3
 # Load the universal shift values from the CSV
 def load_shift_values(csv_file):
     with open(csv_file, 'r') as f:
         reader = csv.DictReader(f)
-        # TODO: Fix that, the loop is useless
-        for row in reader:
-            return {
-                'A': int(row['A_shift']),
-                'P': int(row['P_shift']),
-                'E': int(row['E_shift'])
-            }
+        row = next(reader) # Shift values should be on the first row
+        return {
+            'A': int(row['A_shift']),
+            'P': int(row['P_shift']),
+            'E': int(row['E_shift'])
+        }
 
 
 # Note: load_wiggle_files has been removed since I now construct the list of wiggle files on the fly,
@@ -159,41 +160,42 @@ def process_all_wiggle_files(wig_folder_name, shift_csv, shifted_wig_folder_name
 # %% GETTING ABSOLUTE COVERAGE IN THE REVERSE FILES
 # -------------------------------------------------------------
 
-    # For step 6.4
-    # Now using tools
+    # For step 6.4:
+    # Using the common functionality provided in tools.py
 
 
 # %% TRANSFORMING WIGGLE FILES TO BEDGRAPH (going from 1-based to 0-based coordinates)
 # ------------------------------------------------------------------------------------
 
-    # For step 6.5
-    # Now using tools
+    # For step 6.5:
+    # Using the common functionality provided in tools.py
 
 
 # %% MERGING FORWARD AND REVERSE BEDGRAPH FILES FOR EACH SAMPLE
 # -------------------------------------------------------------
 
     # For step 6.6
-    # Now using tools
+    # Using the common functionality provided in tools.py
 
 
 # %% SORTING ALL CONCATENATED BEDGRAPH FILES
 # ------------------------------------------
 
     # For step 6.7
-    # Now using tools
+    # Using the common functionality provided in tools.py
 
 
 # %% REMOVE OVERLAPS IN SORTED BEDGRAPHS
 # ---------------------------------------
 
     # For step 6.8
-    # Now using tools
+    # Using the common functionality provided in tools.py
 
 # %% TRANSFORMING SORTED/CLEANED BEDGRAPH FILES IN BIGWIG
 # -------------------------------------------------------
 
-    # Blah=
+    # For step 6.9
+    # Using the common functionality provided in tools.py
 
 
 def main():
@@ -214,7 +216,7 @@ def main():
     bigwig_output_folder_name = sys.argv[11]               # name of folder needed for step 6.9 (in which the resulting bigbig files are produced)
 
     # Calling substep 6.1) Extracting the first 3 lines
-    # TODO: This step will probably be removed since it happens on just one bigwig file and I think it was for a test
+    # This is just a small test on one "random" bigwig file
     print_header_and_first_3_lines(just_a_bigwig_file)
 
     # Calling substep 6.2) Converting bigwig to wig
@@ -240,7 +242,6 @@ def main():
 
     # Calling substep 6.9) Converting back all the produced bedgraphs to bigwigs
     tools.convert_all_bedgraphs_to_bigwigs(cleaned_bedgraphs_no_overlap_folder_name, chrom_sizes_txt_file, bigwig_output_folder_name, ".sorted_cleaned.bedgraph")
-
 
 
 if __name__ == "__main__":

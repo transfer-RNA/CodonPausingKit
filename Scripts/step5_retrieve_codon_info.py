@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -6,18 +9,15 @@
 # --- step5_retrieve_codon_info.py                     ---
 # --------------------------------------------------------
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import sys
 import pandas as pd
 
 
 # %% RETRIEVE CODON LIST FOR GENES TO ANALYZE
+# -------------------------------------------
 
 # Function to extract codon information for each gene
-# Utility funciton to get_all_codon_info() defined right after
-# Note (Mar 29, 2026): it seems the argument aminoacid_seq wasn't used at all by this function, so I removed it
+# Utility function to get_all_codon_info() defined right after
 def get_codon_info(gene_name, nucleotide_seq, start, stop, strand, genome):
     codon_info = []
     codon_length = 3  # A codon is always 3 nucleotides long
@@ -50,7 +50,6 @@ def get_codon_info(gene_name, nucleotide_seq, start, stop, strand, genome):
 def get_all_codon_info(input_csv_genes_to_analyze, output_codon_info_of_genes_to_analyze):
     print("\n Getting all the codon info...")
     # Load the CSV file into a pandas DataFrame
-    # Was previously loading "/Users/aude/Documents/Jade_lab/RIBOseq_TB-seq/TestGFF2table/GenesToAnalyze_temp.csv"
     df = pd.read_csv(input_csv_genes_to_analyze)
 
     # Loop over each filtered gene and extract codon information
@@ -72,7 +71,6 @@ def get_all_codon_info(input_csv_genes_to_analyze, output_codon_info_of_genes_to
     codon_df = pd.DataFrame(all_codon_info)
 
     # Save the result to a new CSV file
-    # Was previously saving to "/Users/aude/Documents/Jade_lab/RIBOseq_TB-seq/TestGFF2table/codon_info-GenestoAnalyze.csv"
     codon_df.to_csv(output_codon_info_of_genes_to_analyze, index=False)
 
     print(f"  Codon information saved to: {output_codon_info_of_genes_to_analyze} with genome information")

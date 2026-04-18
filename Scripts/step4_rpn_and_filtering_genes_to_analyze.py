@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -5,9 +8,6 @@
 # --- PolyForm Noncommercial License 1.0.0.            ---
 # --- step4_rpn_and_filtering_genes_to_analyze.py      ---
 # --------------------------------------------------------
-
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import sys
 import os
@@ -309,11 +309,11 @@ def main():
     # This intermediate steps consumes the csv_intermediate produced in mini step 3, and produces output_csv_with_unique_ids and output_report_file
     make_identifiers_unique(csv_intermediate, output_csv_with_unique_ids, output_report_file)
 
-    # Calling subset 4.2) to compute Reads Per Nucleotide
+    # Calling substep 4.2) to compute Reads Per Nucleotide
     input_csv_with_unique_ids = output_csv_with_unique_ids
     calculate_rpn(input_csv_with_unique_ids, mapped_reads_input, output_rpn) # Note (14 Mar 2026): I changed the first argument from csv_intermediate since we need to operate on the one with unique ids I think
 
-    # Calling subset 4.3) to identify CDS features that overlap in a GFF file and export them to CSV
+    # Calling substep 4.3) to identify CDS features that overlap in a GFF file and export them to CSV
     export_overlapping_cds(gff_input, output_overlapping_cds)
 
     # Calling substep 4.4) to remove overlapping CDS from the RPN table

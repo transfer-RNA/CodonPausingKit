@@ -355,4 +355,4 @@ conda deactivate
 ### --- Conclusion -----------------
 ### ---------------------------------
 echo -e "\n ✅ All tasks completed successfully!"
-echo "Outputs are located in: $RUN_DIR"
+echo "Intermediates, Outputs, and full log are located in: $RUN_DIR"

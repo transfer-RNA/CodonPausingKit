@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # --------------------------------------------------------
 # --- CodonPausingKit                                  ---
 # --- Copyright (c) 2025-2026 Aude Trinquier           ---
@@ -6,8 +9,6 @@
 # --- step1_fasta_chrom_sizes.py                       ---
 # --------------------------------------------------------
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import sys
 import os
 from Bio import SeqIO
