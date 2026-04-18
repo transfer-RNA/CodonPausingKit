@@ -1,0 +1,14 @@
+name: CodonPausingKit-steps4-to-5_condaEnv
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.8
+  - gffutils
+  - spyder
+  - importlib_metadata
+  - spyder-kernels
+  - pyflakes
+  - pylint
+  - pandas
