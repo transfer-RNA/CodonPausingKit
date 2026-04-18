@@ -1,10 +1,13 @@
-# --------------------------------------------------------
-# --- CodonPausingKit                                  ---
-# --- Copyright (c) 2025-2026 Aude Trinquier           ---
-# --- All rights reserved.                             ---
-# --- PolyForm Noncommercial License 1.0.0.            ---
-# --- README.md                                        ---
-# --------------------------------------------------------
+# CodonPausingKit
+
+**Copyright © 2025–2026 Aude Trinquier**  
+All rights reserved.
+
+**License:** PolyForm Noncommercial 1.0.0
+
+---
+
+## README.md
 
 **CodonPausingKit** automates the analysis of codon pausing.
 More details and documentation will be added soon.
