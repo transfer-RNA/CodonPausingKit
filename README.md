@@ -1,4 +1,6 @@
-# CodonPausingKit
+=================================
+**Codon Pausing Kit**
+=================================
 
 **Copyright © 2025–2026 Aude Trinquier**  
 All rights reserved.
@@ -9,8 +11,20 @@ All rights reserved.
 
 ## README.md
 
-**CodonPausingKit** automates the analysis of codon pausing.
-More details and documentation will be added soon.
+**CodonPausingKit** performs genome-wide codon pausing from *Bacillus subtilis* Ribo-seq data.
+
+One prerequisite for our Codon Pausing Kit workflow is that the Ribo-seq data is processed using the HRIBO workflow (https://github.com/RickGelhausen/HRIBO).
+Several files from your HRIBO "Output" folder will serve as inputs for your Codon Pausing Kit run.
+
+Our **CodonPausingKit** is optimized for *Bacillus subtilis* Ribo-seq data as it is using custom offsets for 5´-end position to gain nucleotide resolution.
+The offsets used are listed in `shifts.csv` provided in the `Inputs/` subfolder and have been optimized for *Bacillus subtilis* data.
+More information about determination of offset values can be found in the related publication (doi link pending).
+(Note that this method diverges from the 3´-end assignment used for *Escherichia coli* Ribo-seq data).
+
+More information about input files required for a **CodonPausingKit** can be found in section 2 below.
+
+We provide our inputs as examples on our Mendeley data repository (Add link when published) and for reproducibility of our analysis.
+
 
 ---
 
@@ -32,7 +46,20 @@ conda env create -n CodonPausingKit-steps6-to-9_condaEnv -f CodonPausingKit-step
 
 ## 2. Setting up your input files
 
-Place your input files in the `Inputs/` subfolder.
+One prerequisite for our Codon Pausing Kit workflow is that the Ribo-seq data is processed using the HRIBO workflow (https://github.com/RickGelhausen/HRIBO).
+Several files from your HRIBO "Output" folder will serve as inputs for your Codon Pausing Kit run.
+
+Place your input files in the `Inputs/` subfolder:
+The folder already contains `shifts.csv`: the .csv files with 5´-end offset values optimized for getting A, P & E-sites positions from *Bacillus subtilis* Ribo-seq data.
+You will need to add to the `Inputs/` subfolder:
+    - The *Bacillus subtilis* genome reference files:
+          - `3610.fasta`: genome fasta sequence downloaded from NCBI.
+          - `NCIB3610.gff`: genome annotation GFF downloaded from NCBI.
+    - The `overview.xlsx` file obtained from the HRIBO workflow (in the HRIBO `output` folder).
+    - The `total_read_counts.xlsx` file obtained from the HRIBO workflow (in the `quality-control` subfolder the `output` folder). 
+    - Bigwig files from the HRIBO workflow:
+          - RNA coverage files 
+          - Ribosome coverage files
 
 *(More detailed instructions on input formats and requirements will be added soon.)*
 
