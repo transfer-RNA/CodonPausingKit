@@ -1,5 +1,7 @@
 =================================
+
 **Codon Pausing Kit**
+
 =================================
 
 **Copyright © 2025–2026 Aude Trinquier**  
@@ -14,7 +16,7 @@ All rights reserved.
 **CodonPausingKit** performs genome-wide codon pausing from *Bacillus subtilis* Ribo-seq data.
 
 One prerequisite for our Codon Pausing Kit workflow is that the Ribo-seq data is processed using the HRIBO workflow (https://github.com/RickGelhausen/HRIBO).
-Several files from your HRIBO "Output" folder will serve as inputs for your Codon Pausing Kit run.
+Several files from your HRIBO "Output" folder will serve as inputs for the Codon Pausing Kit run.
 
 Our **CodonPausingKit** is optimized for *Bacillus subtilis* Ribo-seq data as it is using custom offsets for 5´-end position to gain nucleotide resolution.
 The offsets used are listed in `shifts.csv` provided in the `Inputs/` subfolder and have been optimized for *Bacillus subtilis* data.
@@ -24,6 +26,11 @@ More information about determination of offset values can be found in the relate
 More information about input files required for a **CodonPausingKit** can be found in section 2 below.
 
 We provide our inputs as examples on our Mendeley data repository (Add link when published) and for reproducibility of our analysis.
+
+---
+
+## Citing this work:
+If you find this work useful, please cite: (Reference pending).
 
 
 ---
@@ -52,16 +59,15 @@ Several files from your HRIBO "Output" folder will serve as inputs for your Codo
 Place your input files in the `Inputs/` subfolder:
 The folder already contains `shifts.csv`: the .csv files with 5´-end offset values optimized for getting A, P & E-sites positions from *Bacillus subtilis* Ribo-seq data.
 You will need to add to the `Inputs/` subfolder:
-    - The *Bacillus subtilis* genome reference files:
-          - `3610.fasta`: genome fasta sequence downloaded from NCBI.
+    - The *Bacillus subtilis* genome reference files (Re-use the files used for the HRIBO alignment):
+          - `3610.fasta`: genome fasta sequence downloaded from NCBI. 
           - `NCIB3610.gff`: genome annotation GFF downloaded from NCBI.
     - The `overview.xlsx` file obtained from the HRIBO workflow (in the HRIBO `output` folder).
     - The `total_read_counts.xlsx` file obtained from the HRIBO workflow (in the `quality-control` subfolder the `output` folder). 
     - Bigwig files from the HRIBO workflow:
-          - RNA coverage files 
-          - Ribosome coverage files
+         - Ribosome coverage files: your ribosome footprints (RIBO) coverage files (2 per sample, corresponding to forward and reverse coverage) should be put in the provided `bigwig_files` subfolder. The fiveprime min-normalized files should be used (see HRIBO documentation). Expected file extension "min.reverse.fiveprime.bw" for reverse and "min.forward.fiveprime.bw" for forward coverage.
+          - RNA coverage files: your RNA coverage files (2 per sample, corresponding to forward and reverse coverage) should be put in the provided `RNAbigwig-global` subfolder. We recommend using the global, min-normalized files (see HRIBO documentation). Expected file extension "min.reverse.global.bw" for reverse and "min.forward.global.bw" for forward coverage.
 
-*(More detailed instructions on input formats and requirements will be added soon.)*
 
 ---
 
@@ -86,6 +92,9 @@ This folder contains:
 * Intermediate results (in `Intermediates/`)
 * Final outputs (in `Outputs/`)
 * A full log of execution of this run
+
+**Important note:**
+Step 10 of the **CodonPausingKit** (step10_stats_and_pre_data_plotting.py) is averaging data over biological replicates. Right now the specific naming convention we used is hardcoded in the script. If you wish to use the **CodonPausingKit** for your own data, you will need to edit the script with your personal naming convention for your replicates.
 
 ---
 
