@@ -15,7 +15,7 @@ All rights reserved.
 
 **CodonPausingKit** performs genome-wide codon pausing from *Bacillus subtilis* Ribo-seq data.
 
-One prerequisite for our Codon Pausing Kit workflow is that the Ribo-seq data is processed using the HRIBO workflow (https://github.com/RickGelhausen/HRIBO).
+One prerequisite for the **CodonPausingKit** workflow is that the Ribo-seq data is processed using the HRIBO workflow (https://github.com/RickGelhausen/HRIBO).
 Several files from your HRIBO "Output" folder will serve as inputs for the Codon Pausing Kit run.
 
 Our **CodonPausingKit** is optimized for *Bacillus subtilis* Ribo-seq data as it is using custom offsets for 5´-end position to gain nucleotide resolution.
@@ -59,14 +59,14 @@ Several files from your HRIBO "Output" folder will serve as inputs for your Codo
 Place your input files in the `Inputs/` subfolder:
 The folder already contains `shifts.csv`: the .csv files with 5´-end offset values optimized for getting A, P & E-sites positions from *Bacillus subtilis* Ribo-seq data.
 You will need to add to the `Inputs/` subfolder:
-    - The *Bacillus subtilis* genome reference files (Re-use the files used for the HRIBO alignment):
-          - `3610.fasta`: genome fasta sequence downloaded from NCBI. 
-          - `NCIB3610.gff`: genome annotation GFF downloaded from NCBI.
-    - The `overview.xlsx` file obtained from the HRIBO workflow (in the HRIBO `output` folder).
-    - The `total_read_counts.xlsx` file obtained from the HRIBO workflow (in the `quality-control` subfolder the `output` folder). 
-    - Bigwig files from the HRIBO workflow:
-         - Ribosome coverage files: your ribosome footprints (RIBO) coverage files (2 per sample, corresponding to forward and reverse coverage) should be put in the provided `bigwig_files` subfolder. The fiveprime min-normalized files should be used (see HRIBO documentation). Expected file extension "min.reverse.fiveprime.bw" for reverse and "min.forward.fiveprime.bw" for forward coverage.
-          - RNA coverage files: your RNA coverage files (2 per sample, corresponding to forward and reverse coverage) should be put in the provided `RNAbigwig-global` subfolder. We recommend using the global, min-normalized files (see HRIBO documentation). Expected file extension "min.reverse.global.bw" for reverse and "min.forward.global.bw" for forward coverage.
+    * The *Bacillus subtilis* genome reference files (Re-use the files used for the HRIBO alignment):
+          * `3610.fasta`: genome fasta sequence downloaded from NCBI. 
+          * `NCIB3610.gff`: genome annotation GFF downloaded from NCBI.
+    * The `overview.xlsx` file obtained from the HRIBO workflow (in the HRIBO `output` folder).
+    * The `total_read_counts.xlsx` file obtained from the HRIBO workflow (in the `quality-control` subfolder the `output` folder). 
+    * Bigwig files from the HRIBO workflow:
+         * Ribosome coverage files: your ribosome footprints (RIBO) coverage files (2 per sample, corresponding to forward and reverse coverage) should be put in the provided `bigwig_files` subfolder. The fiveprime min-normalized files should be used (see HRIBO documentation). Expected file extension "min.reverse.fiveprime.bw" for reverse and "min.forward.fiveprime.bw" for forward coverage.
+          * RNA coverage files: your RNA coverage files (2 per sample, corresponding to forward and reverse coverage) should be put in the provided `RNAbigwig-global` subfolder. We recommend using the global, min-normalized files (see HRIBO documentation). Expected file extension "min.reverse.global.bw" for reverse and "min.forward.global.bw" for forward coverage.
 
 
 ---
