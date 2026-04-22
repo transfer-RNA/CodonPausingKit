@@ -1,4 +1,4 @@
-#Insert your RNA coverage files in this subfolder.
+# Insert your RNA coverage files in this subfolder.
 
 RNA coverage files: 
 your RNA coverage files (2 per sample, corresponding to forward and reverse coverage) should be put in the provided RNAbigwig-global subfolder. 
